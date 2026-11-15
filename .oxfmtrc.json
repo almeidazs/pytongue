@@ -1,0 +1,16 @@
+{
+	"useTabs": true,
+	"tabWidth": 4,
+	"printWidth": 80,
+	"singleQuote": true,
+	"semi": true,
+	"endOfLine": "lf",
+	"sortImports": true,
+	"ignorePatterns": [
+		"dist",
+		"grammar",
+		"tests/fixtures",
+		"bun.lock",
+		"README.md"
+	]
+}
