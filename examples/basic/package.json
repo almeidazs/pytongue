@@ -1,0 +1,16 @@
+{
+	"name": "pytongue-example",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"typecheck": "tsc --noEmit --runExternalCode",
+		"start:node": "node --import pytongue/register src/main.ts",
+		"start:bun": "bun src/main.ts"
+	},
+	"dependencies": {
+		"pytongue": "file:../.."
+	},
+	"devDependencies": {
+		"typescript": "beta"
+	}
+}
