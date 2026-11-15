@@ -4,6 +4,12 @@
  * @module
  */
 import { analyzePython } from '@/engine/analyze';
+import {
+	hasVarPositional,
+	isKeywordField,
+	isOptionalPositional,
+	isRequiredPositional,
+} from '@/shared';
 import type { AnalyzeHost, FunctionInfo } from '@/types/engine';
 import { GENERIC_LAYOUT, type Layout } from '@/types/runtime';
 
@@ -15,23 +21,17 @@ import { GENERIC_LAYOUT, type Layout } from '@/types/runtime';
  */
 export function layoutOf(info: FunctionInfo): Layout {
 	const { params } = info;
+	const varPositional = hasVarPositional(params);
 
 	return {
-		req: params.filter(
-			(p) =>
-				(p.kind === 'normal' || p.kind === 'positional-only') &&
-				!p.hasDefault,
-		).length,
+		req: params.filter(isRequiredPositional).length,
 		opt: params
-			.filter((p) => p.kind === 'positional-only' && p.hasDefault)
+			.filter((p) => isOptionalPositional(p, varPositional))
 			.map((p) => p.name),
-		rest: params.some((p) => p.kind === 'var-positional'),
-		kw: params.some(
-			(p) =>
-				(p.kind === 'normal' && p.hasDefault) ||
-				p.kind === 'keyword-only' ||
-				p.kind === 'var-keyword',
-		),
+		rest: varPositional,
+		kw:
+			params.some((p) => isKeywordField(p, varPositional)) ||
+			params.some((p) => p.kind === 'var-keyword'),
 		gen: info.isGenerator,
 		void:
 			!info.isGenerator &&

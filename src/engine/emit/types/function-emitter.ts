@@ -5,7 +5,14 @@
  */
 import type { MappedCodeBuilder } from 'ts-content-mapper';
 
-import { propertyName, tsLocal } from '@/shared';
+import {
+	hasVarPositional,
+	isKeywordField,
+	isOptionalPositional,
+	isRequiredPositional,
+	propertyName,
+	tsLocal,
+} from '@/shared';
 import {
 	DEFAULT_KWARGS_NAME,
 	MAPPED_FEATURES,
@@ -26,9 +33,9 @@ import type { TypeWriter } from './type-writer';
  * @returns The layout.
  */
 export function signatureParts(params: Param[]): SignatureParts {
-	const keywordFields = params.filter(
-		(p) =>
-			(p.kind === 'normal' && p.hasDefault) || p.kind === 'keyword-only',
+	const varPositional = hasVarPositional(params);
+	const keywordFields = params.filter((p) =>
+		isKeywordField(p, varPositional),
 	);
 	const extra = params.find((p) => p.kind === 'var-keyword');
 	// The trailing object takes the `**kwargs` parameter's own name when there is one.
@@ -42,13 +49,9 @@ export function signatureParts(params: Param[]): SignatureParts {
 	while (taken.has(keywordsName)) keywordsName += '$';
 
 	return {
-		required: params.filter(
-			(p) =>
-				(p.kind === 'normal' || p.kind === 'positional-only') &&
-				!p.hasDefault,
-		),
-		optionalPositional: params.filter(
-			(p) => p.kind === 'positional-only' && p.hasDefault,
+		required: params.filter(isRequiredPositional),
+		optionalPositional: params.filter((p) =>
+			isOptionalPositional(p, varPositional),
 		),
 		keywordFields,
 		rest: params.find((p) => p.kind === 'var-positional'),
@@ -231,8 +234,13 @@ export class FunctionEmitter {
 				},
 			);
 
-			this.types.writeList(members, ' | ', true);
-			b.append(' | undefined; ');
+			// `unknown` already includes `undefined`.
+			if (members.some((m) => m.kind === 'keyword' && m.ts === 'unknown'))
+				b.append('unknown; ');
+			else {
+				this.types.writeList(members, ' | ', true);
+				b.append(' | undefined; ');
+			}
 		}
 
 		b.append('}');

@@ -11,6 +11,7 @@ import {
 	innerType,
 	keywordType,
 	spanOf,
+	typeParameterNames,
 	unknownType,
 } from '@/shared';
 import {
@@ -43,9 +44,12 @@ export class FunctionAnalyzer {
 		const body = definition.childForFieldName('body');
 		const isGenerator = body ? containsYield(body) : false;
 		const doc = docstringOf(body);
+		const typeParameters = typeParameterNames(
+			definition.childForFieldName('type_parameters'),
+		);
 
-		return {
-			kind: 'function',
+		return this.annotations.withTypeVars(typeParameters, () => ({
+			kind: 'function' as const,
 			name: nameNode.text,
 			span: spanOf(nameNode),
 			isAsync: definition.children.some((c) => c.type === 'async'),
@@ -53,7 +57,7 @@ export class FunctionAnalyzer {
 			params: this.params(definition.childForFieldName('parameters')),
 			returns: this.returns(definition, nameNode, isGenerator),
 			...(doc ? { doc } : {}),
-		};
+		}));
 	}
 
 	/**
