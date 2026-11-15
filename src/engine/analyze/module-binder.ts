@@ -183,8 +183,13 @@ export class ModuleBinder {
 	 */
 	private bindFromModule(target: string, entries: ImportedName[]): void {
 		const file = this.scope.moduleFile(target);
+		// `from .pkg import sub` may name a submodule of a package, or of a directory with no
+		// `__init__.py` (a namespace package).
+		const isPackage = !file || file.endsWith('__init__.py');
 
 		for (const entry of entries) {
+			if (isPackage && this.bindSubmodule(target, file, entry)) continue;
+
 			if (!file) {
 				this.scope.bindings.set(entry.local, {
 					kind: 'relative-missing',
@@ -195,6 +200,49 @@ export class ModuleBinder {
 
 			this.bindRelativeName(this.scope.specifier(file), entry);
 		}
+	}
+
+	/**
+	 * Binds a name imported from a package as a submodule, when it is one. A name the package's
+	 * own `__init__.py` defines wins, since Python looks at the package's attributes first.
+	 *
+	 * @param target - The package's absolute path without extension.
+	 * @param init - The package's `__init__.py`, if it has one.
+	 * @param entry - The imported name.
+	 * @returns `true` when the name was bound as a submodule.
+	 */
+	private bindSubmodule(
+		target: string,
+		init: string | undefined,
+		entry: ImportedName,
+	): boolean {
+		const submodule = this.scope.moduleFile(join(target, entry.imported));
+
+		if (!submodule) return false;
+
+		const defined = init
+			? this.scope.foreignModule(this.scope.specifier(init))
+			: undefined;
+
+		if (defined?.surface.some((e) => e.name === entry.imported))
+			return false;
+
+		const specifier = this.scope.specifier(submodule);
+		const span = spanOf(entry.node);
+
+		this.scope.bindings.set(entry.local, {
+			kind: 'relative-module',
+			specifier,
+			span,
+		});
+		this.scope.imports.push({
+			kind: 'namespace',
+			specifier,
+			local: entry.local,
+			span,
+		});
+
+		return true;
 	}
 
 	/**
@@ -250,6 +298,20 @@ export class ModuleBinder {
 	 */
 	private bindRelativeName(specifier: string, entry: ImportedName): void {
 		const span = spanOf(entry.node);
+		const foreign = this.scope.foreignModule(specifier);
+
+		// A name the other file defines but does not export to other `.py` files (a variable, a
+		// private function) has nothing to import in TypeScript: it stays a plain, non-type name.
+		// A name it does not define at all is still imported, so TypeScript reports the missing
+		// member on the Python import, the way Python raises `ImportError`.
+		if (
+			foreign?.definedNames.includes(entry.imported) &&
+			!foreign.surface.some((e) => e.name === entry.imported)
+		) {
+			this.scope.bindings.set(entry.local, { kind: 'other' });
+
+			return;
+		}
 
 		this.scope.bindings.set(entry.local, {
 			kind: 'relative',
@@ -346,6 +408,24 @@ export class ModuleBinder {
 		const isUnion =
 			right.type === 'binary_operator' &&
 			right.childForFieldName('operator')?.text === '|';
+
+		// `MyInt = int`, `Row = Model`, `When = datetime.date`: a name that is a type is an alias.
+		// A name that is a variable or function stays a plain variable.
+		if (right.type === 'identifier' || right.type === 'attribute') {
+			const target = this.scope.resolve(right);
+			const isType =
+				target.kind === 'qualified' ||
+				target.kind === 'local-class' ||
+				target.kind === 'relative' ||
+				target.kind === 'alias';
+
+			bindings.set(
+				name,
+				isType ? { kind: 'alias', value: right } : { kind: 'other' },
+			);
+
+			return;
+		}
 
 		bindings.set(
 			name,

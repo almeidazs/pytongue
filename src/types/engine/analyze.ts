@@ -317,6 +317,14 @@ export interface SurfaceClass {
 	name: string;
 }
 
+/** A function declared in the module, exported on the `$py$` surface as a type-only name. */
+export interface SurfaceFunction {
+	/** Discriminant. */
+	kind: 'function';
+	/** The Python name. */
+	name: string;
+}
+
 /** A type alias (`Label = Literal[...]`), exported on the `$py$` surface. */
 export interface SurfaceAlias {
 	/** Discriminant. */
@@ -365,6 +373,7 @@ export interface SurfaceRelativeModule {
  */
 export type SurfaceEntry =
 	| SurfaceClass
+	| SurfaceFunction
 	| SurfaceAlias
 	| SurfaceUnknown
 	| SurfaceRelative
@@ -390,6 +399,12 @@ export interface ModuleInfo {
 	exports: ExportEntry[];
 	/** The `$py$` type surface for other `.py` files. */
 	surface: SurfaceEntry[];
+	/**
+	 * Every name bound at module level (functions, classes, variables, imports), exported or not.
+	 * It tells a name another file does not export (silently ignored) from one that does not
+	 * exist (an `ImportError` in Python, so an error here too).
+	 */
+	definedNames: string[];
 	/** Notes that apply to the whole module, shown on every export's hover. */
 	moduleNotes: string[];
 	/** Syntax errors, if any. */

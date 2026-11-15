@@ -48,19 +48,26 @@ export function unionOf(members: TypeRef[]): TypeRef {
 	const flat = members.flatMap((member) =>
 		member.kind === 'union' ? member.members : [member],
 	);
-	const seen = new Set<string>();
+	const keywords = new Map<string, KeywordType>();
+	const out: TypeRef[] = [];
 
-	const out = flat.filter((member) => {
-		if (member.kind !== 'keyword') return true;
+	for (const member of flat) {
+		if (member.kind !== 'keyword') {
+			out.push(member);
 
-		const key = member.ts + (member.int ? ':int' : '');
+			continue;
+		}
 
-		if (seen.has(key)) return false;
+		const seen = keywords.get(member.ts);
 
-		seen.add(key);
+		if (!seen) {
+			// A copy, so merging below never edits a shared type.
+			const copy = { ...member };
 
-		return true;
-	});
+			keywords.set(member.ts, copy);
+			out.push(copy);
+		} else if (member.int) seen.int = true; // `int | float` is one `number` that keeps the int note
+	}
 
 	return out.length === 1 ? out[0]! : { kind: 'union', members: out };
 }

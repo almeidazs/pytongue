@@ -5,7 +5,13 @@
  */
 import type { Node } from 'web-tree-sitter';
 
-import { docstringOf, spanOf, stringValue, tsLocal } from '@/shared';
+import {
+	docstringOf,
+	spanOf,
+	stringValue,
+	tsLocal,
+	typeParameterNames,
+} from '@/shared';
 import type {
 	ClassBases,
 	ClassInfo,
@@ -14,6 +20,7 @@ import type {
 	RefType,
 } from '@/types/engine';
 
+import type { AnnotationTranslator } from './annotation-translator';
 import type { EnumAnalyzer } from './enum-analyzer';
 import type { FieldAnalyzer } from './field-analyzer';
 import type { ModuleScope } from './module-scope';
@@ -26,11 +33,13 @@ export class ClassAnalyzer {
 	 * @param scope - Decides each class's kind and resolves its bases.
 	 * @param fields - Reads model and TypedDict fields.
 	 * @param enums - Reads enum members.
+	 * @param annotations - Scopes PEP 695 type parameters around field annotations.
 	 */
 	constructor(
 		private readonly scope: ModuleScope,
 		private readonly fields: FieldAnalyzer,
 		private readonly enums: EnumAnalyzer,
+		private readonly annotations: AnnotationTranslator,
 	) {}
 
 	/**
@@ -57,7 +66,12 @@ export class ClassAnalyzer {
 			name: nameNode.text,
 			span: spanOf(nameNode),
 			bases,
-			fields: this.fieldsOf(body, kind, total),
+			fields: this.annotations.withTypeVars(
+				typeParameterNames(
+					definition.childForFieldName('type_parameters'),
+				),
+				() => this.fieldsOf(body, kind, total),
+			),
 			...(doc ? { doc } : {}),
 		} satisfies ModelInfo;
 	}

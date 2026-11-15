@@ -37,13 +37,27 @@ export function stringValue(node: Node): string | undefined {
 	if (prefix.includes('f') || prefix.includes('b') || prefix.includes('t'))
 		return undefined;
 
-	const raw = prefix.includes('r');
+	if (prefix.includes('r')) {
+		// A raw string has no escapes to process, and tree-sitter may give it no content nodes
+		// at all (`r'\''`): the text between the delimiters is the value.
+		const end = node.namedChildren.find((c) => c.type === 'string_end');
+
+		return node.text.slice(
+			start?.text.length ?? 0,
+			node.text.length - (end?.text.length ?? 0),
+		);
+	}
+
 	let value = '';
 
 	for (const child of node.namedChildren) {
-		if (child.type === 'string_content')
-			value += raw ? child.text : unescapeContent(child);
-		else if (child.type === 'interpolation') return undefined;
+		if (child.type === 'string_content') {
+			const text = unescapeContent(child);
+
+			if (text === undefined) return undefined;
+
+			value += text;
+		} else if (child.type === 'interpolation') return undefined;
 	}
 
 	return value;
@@ -53,9 +67,9 @@ export function stringValue(node: Node): string | undefined {
  * Decodes the escape sequences inside one `string_content` node.
  *
  * @param content - A `string_content` node.
- * @returns The decoded text.
+ * @returns The decoded text, or `undefined` when it holds an escape that cannot be decoded.
  */
-function unescapeContent(content: Node): string {
+function unescapeContent(content: Node): string | undefined {
 	let out = '';
 	let position = content.startIndex;
 	const text = content.text;
@@ -64,8 +78,12 @@ function unescapeContent(content: Node): string {
 	for (const escape of content.namedChildren) {
 		if (escape.type !== 'escape_sequence') continue;
 
+		const decoded = decodeEscape(escape.text);
+
+		if (decoded === undefined) return undefined;
+
 		out += text.slice(position - base, escape.startIndex - base);
-		out += decodeEscape(escape.text);
+		out += decoded;
 		position = escape.endIndex;
 	}
 
@@ -78,9 +96,12 @@ function unescapeContent(content: Node): string {
  * Decodes one Python escape sequence.
  *
  * @param escape - The escape as written, such as `\n` or `\x41`.
- * @returns The character it stands for, or the escape itself when unknown.
+ * @returns The character it stands for, the escape itself when Python keeps it, or `undefined`
+ *   for `\N{name}`, which needs a Unicode name table JavaScript does not have.
  */
-function decodeEscape(escape: string): string {
+function decodeEscape(escape: string): string | undefined {
+	if (escape.startsWith('\\N{')) return undefined;
+
 	const simple = SIMPLE_ESCAPES[escape];
 
 	if (simple !== undefined) return simple;

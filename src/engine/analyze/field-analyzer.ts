@@ -218,7 +218,8 @@ export class FieldAnalyzer {
 	 * Applies the arguments of one `Field(...)` call.
 	 *
 	 * @param call - The `call` node.
-	 * @param isAssigned - Whether the call is the assigned value (only then can it set a default).
+	 * @param isAssigned - Whether the call is the assigned value (only then does a positional
+	 *   argument set a default, and `default=` decide alone).
 	 * @param options - Updated in place.
 	 */
 	private readFieldCall(
@@ -240,10 +241,16 @@ export class FieldAnalyzer {
 			const value = arg.childForFieldName('value')!;
 			const text = stringValue(value);
 
-			if ((key === 'default' || key === 'default_factory') && isAssigned)
-				options.hasDefault =
+			if (key === 'default' || key === 'default_factory') {
+				const provides =
 					value.type !== 'ellipsis' || key === 'default_factory';
-			else if (key === 'alias' && text !== undefined)
+
+				// `x: int = Field(default=...)` decides alone. In `Annotated[int, Field(default=3)]`
+				// a default only ever adds one: an assigned value still wins over metadata.
+				options.hasDefault = isAssigned
+					? provides
+					: options.hasDefault || provides;
+			} else if (key === 'alias' && text !== undefined)
 				options.inputName = options.outputName = text;
 			else if (key === 'validation_alias' && text !== undefined)
 				options.inputName = text;

@@ -68,15 +68,22 @@ export class ExportCollector {
 	}
 
 	/**
-	 * Computes the `$py$` surface: every class, type alias and relative import of the module.
+	 * Computes the `$py$` surface: every class, type alias and relative import of the module,
+	 * plus the functions it exports (type-only, so another file can import them by name).
 	 *
+	 * @param exports - The module's public exports.
 	 * @returns The surface entries, in binding order.
 	 */
-	surface(): SurfaceEntry[] {
+	surface(exports: ExportEntry[]): SurfaceEntry[] {
 		const out: SurfaceEntry[] = [];
+		const exported = new Set(
+			exports.filter((e) => e.kind === 'function').map((e) => e.name),
+		);
 
 		for (const [name, binding] of this.scope.bindings) {
-			if (binding.kind === 'class')
+			if (binding.kind === 'function') {
+				if (exported.has(name)) out.push({ kind: 'function', name });
+			} else if (binding.kind === 'class')
 				out.push(
 					this.scope.classKind(name) === 'other'
 						? { kind: 'unknown', name }

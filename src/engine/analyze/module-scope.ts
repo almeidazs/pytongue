@@ -13,8 +13,10 @@ import {
 	ENUM_BASES,
 	SURFACE_PREFIX,
 	type AnalyzeHost,
+	type ModuleInfo,
 	type Binding,
 	type ClassKind,
+	type ForeignModuleLookup,
 	type RelativeImport,
 	type Resolved,
 } from '@/types/engine';
@@ -37,10 +39,12 @@ export class ModuleScope {
 	 *
 	 * @param fileName - The absolute path of the Python file.
 	 * @param host - File access, for resolving relative imports.
+	 * @param peek - Looks at the files this one imports from.
 	 */
 	constructor(
 		fileName: string,
 		readonly host: AnalyzeHost,
+		private readonly peek: ForeignModuleLookup = () => undefined,
 	) {
 		this.dir = dirname(fileName);
 	}
@@ -117,11 +121,18 @@ export class ModuleScope {
 					? {
 							kind: 'relative',
 							path: [tsLocal(head), SURFACE_PREFIX + rest[0]!],
+							specifier: binding.specifier,
+							imported: rest[0]!,
 						}
 					: { kind: 'unresolved', name: written };
 			case 'relative':
 				return rest.length === 0
-					? { kind: 'relative', path: [tsLocal(head)] }
+					? {
+							kind: 'relative',
+							path: [tsLocal(head)],
+							specifier: binding.specifier,
+							imported: binding.imported,
+						}
 					: { kind: 'unresolved', name: written };
 			case 'relative-missing':
 				return { kind: 'missing', target: binding.target };
@@ -135,7 +146,7 @@ export class ModuleScope {
 					: { kind: 'not-a-type', name: written };
 			case 'alias':
 				return rest.length === 0
-					? { kind: 'alias', value: binding.value }
+					? { kind: 'alias', name: head, value: binding.value }
 					: { kind: 'not-a-type', name: written };
 			case 'typevar':
 				return { kind: 'typevar' };
@@ -183,9 +194,17 @@ export class ModuleScope {
 				resolved.classKind !== 'other'
 			)
 				kind = resolved.classKind;
-			// Model semantics are also right for a TypedDict base from another file.
-			else if (resolved.kind === 'relative' && kind === 'other')
-				kind = 'model';
+			else if (resolved.kind === 'relative') {
+				// A base from another file: ask that file what it is. When it cannot say (an
+				// import cycle, a re-export), model semantics are the safe guess.
+				const foreign = this.foreignClassKind(
+					resolved.specifier,
+					resolved.imported,
+				);
+
+				if (foreign) kind = foreign;
+				else if (kind === 'other') kind = 'model';
+			}
 
 			if (kind !== 'other' && kind !== 'model') break;
 		}
@@ -196,13 +215,40 @@ export class ModuleScope {
 	}
 
 	/**
-	 * Finds the file of a Python module path.
+	 * Analyzes the file a relative specifier points at.
+	 *
+	 * @param specifier - A specifier such as `./models.py`.
+	 * @returns The file's analysis, or `undefined` when it cannot be read or is in an import cycle.
+	 */
+	foreignModule(specifier: string): ModuleInfo | undefined {
+		return this.peek(join(this.dir, specifier));
+	}
+
+	/**
+	 * Tells how pytongue treats a class defined in another file.
+	 *
+	 * @param specifier - The other file's specifier.
+	 * @param name - The class name there.
+	 * @returns `model`, `typeddict` or `enum`, or `undefined` when the file does not define it.
+	 */
+	private foreignClassKind(
+		specifier: string,
+		name: string,
+	): ClassKind | undefined {
+		return this.foreignModule(specifier)?.classes.find(
+			(c) => c.name === name,
+		)?.kind;
+	}
+
+	/**
+	 * Finds the file of a Python module path. A package wins over a module of the same name,
+	 * as it does in Python.
 	 *
 	 * @param target - An absolute path without extension.
 	 * @returns `target.py` or `target/__init__.py`, whichever exists, or `undefined`.
 	 */
 	moduleFile(target: string): string | undefined {
-		for (const candidate of [target + '.py', join(target, '__init__.py')]) {
+		for (const candidate of [join(target, '__init__.py'), target + '.py']) {
 			if (this.host.fileExists(candidate)) return candidate;
 		}
 

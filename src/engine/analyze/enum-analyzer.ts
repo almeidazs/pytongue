@@ -9,6 +9,7 @@ import { keywordType, literalValue, spanOf, unknownType } from '@/shared';
 import {
 	DiagnosticCode,
 	type EnumInfo,
+	type AutoKind,
 	type EnumMember,
 	type LiteralValue,
 	type TypeRef,
@@ -36,12 +37,10 @@ export class EnumAnalyzer {
 		const nameNode = definition.childForFieldName('name')!;
 		const bases =
 			definition.childForFieldName('superclasses')?.namedChildren ?? [];
-		const strEnum = bases.some(
-			(b) => this.scope.qualifiedName(b) === 'enum.StrEnum',
-		);
+		const kind = this.autoKind(bases);
 		const values: LiteralValue[] = [];
 		let unreadable: string | undefined;
-		let lastInt = 0;
+		let highest = 0;
 
 		for (const statement of definition.childForFieldName('body')
 			?.namedChildren ?? []) {
@@ -54,13 +53,19 @@ export class EnumAnalyzer {
 			if (value !== undefined) {
 				values.push(value);
 
-				if (typeof value === 'number') lastInt = value;
+				if (typeof value === 'number')
+					highest = Math.max(highest, value);
 
 				continue;
 			}
 
 			if (this.isAuto(member.value)) {
-				values.push(strEnum ? member.name.toLowerCase() : ++lastInt);
+				const next = nextAuto(kind, member.name, highest);
+
+				if (typeof next === 'number') highest = next;
+
+				values.push(kind === 'string-mixin' ? String(next) : next);
+
 				continue;
 			}
 
@@ -74,6 +79,23 @@ export class EnumAnalyzer {
 			type: this.enumType(values, unreadable, nameNode),
 			...(doc ? { doc } : {}),
 		};
+	}
+
+	/**
+	 * Decides how `auto()` numbers or names members, from the enum's bases.
+	 *
+	 * @param bases - The class's base expressions.
+	 * @returns The flavour of `auto()` this enum uses.
+	 */
+	private autoKind(bases: Node[]): AutoKind {
+		const names = new Set(bases.map((b) => this.scope.qualifiedName(b)));
+
+		if (names.has('enum.StrEnum')) return 'str-enum';
+
+		if (names.has('enum.Flag') || names.has('enum.IntFlag')) return 'flag';
+
+		// `class E(str, Enum)` converts the generated int with `str()`.
+		return names.has('builtins.str') ? 'string-mixin' : 'sequence';
 	}
 
 	/**
@@ -138,4 +160,26 @@ export class EnumAnalyzer {
 			? { kind: 'literal', values }
 			: keywordType('unknown');
 	}
+}
+
+/**
+ * Computes the value `auto()` generates, as Python 3.12 and 3.13 do.
+ *
+ * @param kind - The enum's flavour.
+ * @param name - The member name (used by `StrEnum`).
+ * @param highest - The highest numeric value so far, or 0.
+ * @returns A lower-cased name for `StrEnum`; for a `Flag` the next power of two; otherwise the
+ *   highest value so far plus one.
+ */
+function nextAuto(
+	kind: AutoKind,
+	name: string,
+	highest: number,
+): number | string {
+	if (kind === 'str-enum') return name.toLowerCase();
+
+	if (kind === 'flag')
+		return highest <= 0 ? 1 : 2 ** Math.floor(Math.log2(highest) + 1);
+
+	return highest + 1;
 }

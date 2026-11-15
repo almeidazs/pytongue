@@ -29,16 +29,14 @@ export class ImportEmitter {
 	 * @param imports - The module's relative imports.
 	 */
 	emit(imports: RelativeImport[]): void {
-		const seen = new Set<string>();
+		// Python binds the last import of a name, so the last one is the one written.
+		const last = new Map<string, RelativeImport>();
+
+		for (const entry of imports) last.set(tsLocal(entry.local), entry);
+
 		const named = new Map<string, NamedImport[]>();
 
-		for (const entry of imports) {
-			const local = tsLocal(entry.local);
-
-			if (seen.has(local)) continue;
-
-			seen.add(local);
-
+		for (const [local, entry] of last) {
 			if (entry.kind === 'named') {
 				const group = named.get(entry.specifier) ?? [];
 

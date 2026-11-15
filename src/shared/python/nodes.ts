@@ -144,3 +144,28 @@ export function subscriptParts(node: Node): SubscriptParts {
 
 	return { base: undefined, args: [] };
 }
+
+/**
+ * Reads the names a PEP 695 type-parameter list declares (`def f[T: int, *Ts, **P]`), leaving
+ * out their bounds.
+ *
+ * @param node - A function's or class's `type_parameters` node, if it has one.
+ * @returns The declared names (`['T', 'Ts', 'P']`).
+ */
+export function typeParameterNames(node: Node | null): string[] {
+	const nameOf = (n: Node | undefined): string | undefined => {
+		if (!n) return undefined;
+
+		if (n.type === 'identifier') return n.text;
+
+		return n.type === 'type' ||
+			n.type === 'constrained_type' ||
+			n.type === 'splat_type'
+			? nameOf(n.namedChildren[0])
+			: undefined;
+	};
+
+	return (node?.namedChildren ?? [])
+		.map((child) => nameOf(child))
+		.filter((name): name is string => name !== undefined);
+}

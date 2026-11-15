@@ -52,7 +52,12 @@ export class DiagnosticsBuilder {
 	 * @returns This builder.
 	 */
 	unknowns(unknowns: Iterable<UnknownType>): this {
-		for (const type of unknowns)
+		// In source order: the emitters write some types out of order (the `*args` overload).
+		const ordered = [...unknowns].toSorted(
+			(a, b) => a.span.start - b.span.start,
+		);
+
+		for (const type of ordered)
 			this.add(
 				`${capitalize(type.reason)}, so it is typed as \`unknown\` (pytongue strict mode).`,
 				type.span,

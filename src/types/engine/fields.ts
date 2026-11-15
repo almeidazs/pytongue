@@ -44,3 +44,6 @@ export interface ClassBases {
 	/** The TypedDict `total=` flag (`true` unless `total=False`). */
 	total: boolean;
 }
+
+/** How `auto()` generates enum values. */
+export type AutoKind = 'sequence' | 'flag' | 'str-enum' | 'string-mixin';

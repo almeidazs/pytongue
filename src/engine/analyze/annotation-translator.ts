@@ -44,12 +44,37 @@ import type { ModuleScope } from './module-scope';
 
 /** Translates annotations, resolving names against the module scope. */
 export class AnnotationTranslator {
+	/** Type-parameter names in scope (PEP 695 `def f[T]`), which are generics. */
+	private readonly typeVars = new Set<string>();
+	/** Names of the aliases being expanded right now, to cut recursive aliases. */
+	private readonly expanding = new Set<string>();
+
 	/**
 	 * Creates a translator.
 	 *
 	 * @param scope - The scope names are resolved in.
 	 */
 	constructor(private readonly scope: ModuleScope) {}
+
+	/**
+	 * Runs a callback with PEP 695 type parameters in scope, so uses of them are recognized as
+	 * generics instead of unresolved names.
+	 *
+	 * @param names - The declared type-parameter names.
+	 * @param callback - What to run.
+	 * @returns The callback's result.
+	 */
+	withTypeVars<T>(names: string[], callback: () => T): T {
+		const added = names.filter((name) => !this.typeVars.has(name));
+
+		for (const name of added) this.typeVars.add(name);
+
+		try {
+			return callback();
+		} finally {
+			for (const name of added) this.typeVars.delete(name);
+		}
+	}
 
 	/**
 	 * Translates an annotation.
@@ -88,6 +113,13 @@ export class AnnotationTranslator {
 			case 'identifier':
 			case 'attribute':
 			case 'member_type':
+				if (node.type === 'identifier' && this.typeVars.has(node.text))
+					return unknownType(
+						'type variables (generics) are not supported yet',
+						DiagnosticCode.Untranslatable,
+						span,
+					);
+
 				return this.nameType(this.scope.resolve(node), span, depth);
 			case 'generic_type':
 
@@ -222,8 +254,26 @@ export class AnnotationTranslator {
 				return { kind: 'ref', path: [tsLocal(resolved.name)], span };
 			case 'relative':
 				return { kind: 'ref', path: resolved.path, span };
-			case 'alias':
-				return this.translate(resolved.value, 0, depth + 1);
+
+			case 'alias': {
+				// `Json = dict[str, "Json"] | list["Json"]` would otherwise expand to the depth limit
+				// on every branch: cut the recursion where it comes back to itself.
+				if (this.expanding.has(resolved.name))
+					return unknownType(
+						`type alias \`${resolved.name}\` is recursive`,
+						DiagnosticCode.Untranslatable,
+						span,
+					);
+
+				this.expanding.add(resolved.name);
+
+				try {
+					return this.translate(resolved.value, 0, depth + 1);
+				} finally {
+					this.expanding.delete(resolved.name);
+				}
+			}
+
 			case 'typevar':
 				return unknownType(
 					'type variables (generics) are not supported yet',
@@ -281,7 +331,7 @@ export class AnnotationTranslator {
 
 		if (BYTES_LIKE.has(qualified))
 			return unknownType(
-				'`bytes` has no JSON form',
+				`\`${qualified.split('.').at(-1)}\` has no JSON form`,
 				DiagnosticCode.Untranslatable,
 				span,
 			);
@@ -305,7 +355,7 @@ export class AnnotationTranslator {
 			);
 
 		return unknownType(
-			`\`${resolved.name}\` comes from the package \`${resolved.module}\``,
+			`\`${resolved.name}\` comes from the module \`${resolved.module}\``,
 			DiagnosticCode.PackageType,
 			span,
 		);

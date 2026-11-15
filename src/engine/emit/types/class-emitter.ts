@@ -131,8 +131,17 @@ export class ClassEmitter {
 	 * @param target - What `X.Input` stands for.
 	 */
 	private emitInputAlias(name: string, target: string): void {
+		let reference = target;
+
+		// Inside `namespace X { type Input = Input }` the name `Input` is the alias being declared,
+		// so a class that is itself named `Input` goes through a top-level alias.
+		if (target === 'Input') {
+			reference = '$Input$Input';
+			this.builder.append(`type ${reference} = ${target};\n`);
+		}
+
 		this.builder.append(
-			`declare namespace ${name} {\n  type Input = ${target};\n}\n`,
+			`declare namespace ${name} {\n  type Input = ${reference};\n}\n`,
 		);
 	}
 

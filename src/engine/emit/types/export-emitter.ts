@@ -51,7 +51,11 @@ export class ExportEmitter {
 		if (types.length)
 			this.builder.append(`export type { ${types.join(', ')} };\n`);
 
-		this.builder.append(`export { ${values.join(', ')} };\n`);
+		this.builder.append(
+			values.length
+				? `export { ${values.join(', ')} };\n`
+				: 'export {};\n',
+		);
 	}
 
 	/**
@@ -111,7 +115,7 @@ export class ExportEmitter {
 		const local = tsLocal(entry.name);
 
 		this.docs.write(undefined, [
-			`\`${entry.name}\` comes from the package \`${entry.module}\`, so it is typed as \`unknown\`.`,
+			`\`${entry.name}\` comes from the module \`${entry.module}\`, so it is typed as \`unknown\`.`,
 		]);
 		this.builder.append(`declare const ${local}: unknown;\n`);
 

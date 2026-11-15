@@ -6,7 +6,7 @@
  */
 import type { Node } from 'web-tree-sitter';
 
-import type { Span } from './analyze';
+import type { ModuleInfo, Span } from './analyze';
 
 /** How pytongue treats a class, decided from its bases. */
 export type ClassKind = 'model' | 'typeddict' | 'enum' | 'other';
@@ -136,12 +136,26 @@ export interface RelativeName {
 	kind: 'relative';
 	/** The TypeScript spelling of the reference. */
 	path: string[];
+	/** The specifier of the file the name comes from. */
+	specifier: string;
+	/** The name in that file. */
+	imported: string;
 }
+
+/**
+ * Analyzes another `.py` file, to learn what a relative import brings in.
+ *
+ * @param file - The file's absolute path.
+ * @returns Its analysis, or `undefined` when it cannot be read or is part of an import cycle.
+ */
+export type ForeignModuleLookup = (file: string) => ModuleInfo | undefined;
 
 /** A type alias of this file. */
 export interface AliasName {
 	/** Discriminant. */
 	kind: 'alias';
+	/** The alias's name, used to detect recursive aliases. */
+	name: string;
 	/** The aliased annotation node. */
 	value: Node;
 }
