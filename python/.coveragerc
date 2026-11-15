@@ -1,0 +1,9 @@
+[run]
+source = pytongue_bridge
+branch = True
+patch = subprocess
+
+[report]
+show_missing = True
+exclude_also =
+    if __name__ == .__main__.:
