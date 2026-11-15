@@ -88,6 +88,8 @@ export interface WorkerRequest {
 export interface StartupState {
 	/** `true` once the module imported. */
 	isReady: boolean;
+	/** `true` once the worker itself reported why the import failed (`ready: false`). */
+	reported: boolean;
 }
 
 /** A Node handle that can stop keeping the event loop alive. */

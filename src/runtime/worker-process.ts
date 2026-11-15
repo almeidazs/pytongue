@@ -119,7 +119,7 @@ export class WorkerProcess {
 		const ready = new Promise<void>(
 			(resolve, reject) => (signal = { resolve, reject }),
 		);
-		const state: StartupState = { isReady: false };
+		const state: StartupState = { isReady: false, reported: false };
 
 		child.stderr.on('data', (chunk: Buffer) => this.onStderr(chunk));
 		this.readLines(child, (message) =>
@@ -127,7 +127,7 @@ export class WorkerProcess {
 		);
 
 		const fail = (error: PythonWorkerError) =>
-			this.onExit(child, error, signal!, state.isReady);
+			this.onExit(child, error, signal!, state);
 
 		child.on('error', (err: NodeJS.ErrnoException) =>
 			fail(new PythonWorkerError(this.spawnErrorMessage(command, err))),
@@ -205,6 +205,7 @@ export class WorkerProcess {
 			} else {
 				const error = toPythonError(message.error!);
 
+				state.reported = true;
 				this.recordStartupFailure(error);
 				signal.reject(error);
 			}
@@ -229,22 +230,23 @@ export class WorkerProcess {
 	 * @param child - The worker that ended (ignored when a newer one replaced it).
 	 * @param error - Why it ended.
 	 * @param signal - Settles the ready promise.
-	 * @param wasReady - Whether the handshake had succeeded.
+	 * @param state - Whether the handshake succeeded, or the worker already said why it failed.
 	 */
 	private onExit(
 		child: WorkerChild,
 		error: PythonWorkerError,
 		signal: ReadySignal,
-		wasReady: boolean,
+		state: StartupState,
 	): void {
 		if (this.child !== child) return;
 
 		this.child = undefined;
 		this.ready = undefined;
 
-		if (!wasReady) {
-			if (!this.startupFailure || this.startupFailure.error !== error)
-				this.recordStartupFailure(error);
+		if (!state.isReady) {
+			// The worker's own report (the Python traceback) beats the bare "exited with code 1"
+			// that follows it, so only a start that never said anything records the exit.
+			if (!state.reported) this.recordStartupFailure(error);
 
 			signal.reject(this.startupFailure?.error ?? error);
 		}
