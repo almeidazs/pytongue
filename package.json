@@ -25,15 +25,19 @@
 		"lint": "ultracite check",
 		"lint:fix": "ultracite fix",
 		"format": "ultracite fix",
+		"prepare": "if [ -z \"$CI\" ] && [ -e .git ]; then lefthook install; fi",
 		"verify": "ultracite check && bun check && bun test"
 	},
 	"dependencies": {
 		"web-tree-sitter": "0.27.2"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^21.2.4",
+		"@commitlint/config-conventional": "^21.2.4",
 		"@stylistic/eslint-plugin": "^6.0.0",
 		"@types/bun": "latest",
 		"@types/node": "^26.6.6",
+		"lefthook": "^2.2.2",
 		"oxfmt": "^0.78.0",
 		"oxlint": "^1.93.0",
 		"smol-toml": "^1.9.1",
