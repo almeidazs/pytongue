@@ -1,0 +1,10 @@
+main.py(4,8): error pytongue1003: Cannot parse string annotation `"list["`, so it is typed as `unknown` (pytongue strict mode).
+    at "\"list[\""
+main.py(5,8): error pytongue1003: Unsupported string annotation `f"int"`, so it is typed as `unknown` (pytongue strict mode).
+    at "f\"int\""
+main.py(6,8): error pytongue1003: Unsupported string annotation `b"int"`, so it is typed as `unknown` (pytongue strict mode).
+    at "b\"int\""
+main.py(7,8): error pytongue1003: Unsupported string annotation `"in\x74"`, so it is typed as `unknown` (pytongue strict mode).
+    at "\"in\\x74\""
+main.py(8,8): error pytongue1003: Unsupported string annotation `"Opt" "ional[int]"`, so it is typed as `unknown` (pytongue strict mode).
+    at "\"Opt\" \"ional[int]\""

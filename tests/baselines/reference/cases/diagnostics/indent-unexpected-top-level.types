@@ -1,0 +1,4 @@
+
+--- TypeScript errors ---
+diagnostics/indent-unexpected-top-level/main.py(3,1): error pytongue1001: Python syntax error: unexpected indent
+

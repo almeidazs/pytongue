@@ -1,0 +1,1 @@
+count: (ids: $aliasInput$Ids) => Promise<number>

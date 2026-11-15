@@ -1,0 +1,8 @@
+main.py(3,5): error pytongue1002: No return type hint, so it is typed as `unknown` (pytongue strict mode).
+    at "f"
+main.py(3,7): error pytongue1002: Parameter `a` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+    at "a"
+main.py(3,23): error pytongue1002: Parameter `args` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+    at "args"
+main.py(3,31): error pytongue1002: Parameter `kwargs` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+    at "kwargs"

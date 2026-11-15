@@ -1,0 +1,3 @@
+one: (x: number) => Promise<number>
+semi: (x: number) => Promise<number>
+decorated: (a: number, b: number) => Promise<number>

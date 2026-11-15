@@ -1,0 +1,4 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 5:18 "connect" → py 2:5 "connect" alias
+ts 5:26 "host" → py 2:13 "host" alias
+ts 5:50 "port" → py 2:27 "port" alias

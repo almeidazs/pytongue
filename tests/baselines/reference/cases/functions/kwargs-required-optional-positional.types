@@ -1,0 +1,1 @@
+send: (message: string, retries: number | undefined, kwargs: { channel: string; }) => Promise<boolean>

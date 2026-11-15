@@ -1,0 +1,5 @@
+type Movie
+  title: string
+  year?: number | undefined
+  rating?: number | undefined
+  tags: string[]

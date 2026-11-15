@@ -1,0 +1,5 @@
+média: (preço: number, quantidade: unknown) => Promise<number>
+
+--- TypeScript errors ---
+diagnostics/unicode-identifiers/main.py(3,25): error pytongue1002: Parameter `quantidade` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+

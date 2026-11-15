@@ -1,0 +1,5 @@
+type Node
+  children: import("./main.py").Node[]
+type Leaf
+  value: number
+  children: import("./main.py").Node[]

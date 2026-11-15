@@ -1,0 +1,8 @@
+main.py(21,8): error pytongue1003: `helper` is not a type, so it is typed as `unknown` (pytongue strict mode).
+    at "helper"
+main.py(22,8): error pytongue1003: `LIMIT` is not a type, so it is typed as `unknown` (pytongue strict mode).
+    at "LIMIT"
+main.py(23,8): error pytongue1003: Class `Plain` is not a BaseModel, TypedDict or Enum, so it is typed as `unknown` (pytongue strict mode).
+    at "Plain"
+main.py(24,8): error pytongue1003: `Model.x` is not a type, so it is typed as `unknown` (pytongue strict mode).
+    at "Model.x"

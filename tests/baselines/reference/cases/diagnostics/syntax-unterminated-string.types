@@ -1,0 +1,5 @@
+after: (y: string) => Promise<string>
+
+--- TypeScript errors ---
+diagnostics/syntax-unterminated-string/main.py(2,12): error pytongue1001: Python syntax error
+

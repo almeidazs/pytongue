@@ -1,0 +1,9 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:11 "Invoice" → py 7:7 "Invoice" alias
+ts 3:3 "invoiceNumber" → py 8:5 "number" alias
+ts 4:3 "lines" → py 9:5 "lines" alias
+ts 5:3 "paid" → py 10:5 "paid" alias
+ts 6:3 "total" → py 14:9 "total" alias
+ts 10:5 "invoiceNumber" → py 8:5 "number" alias
+ts 11:5 "lines" → py 9:5 "lines" alias
+ts 12:5 "paid" → py 10:5 "paid" alias

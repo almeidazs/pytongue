@@ -1,0 +1,1 @@
+full: { (a: number, b: string | undefined, c: number | undefined, rest: { [key: string]: string | boolean | undefined; d: boolean; }): Promise<void>; (a: number, b: string, c: number, args: number[], rest: { [key: string]: string | boolean | undefined; d: boolean; }): Promise<void>; }

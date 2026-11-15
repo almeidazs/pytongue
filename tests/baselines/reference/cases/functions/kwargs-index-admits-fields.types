@@ -1,0 +1,1 @@
+call: (flags: { [key: string]: string | number | boolean | undefined; target: string; timeout?: number | undefined; }) => Promise<void>

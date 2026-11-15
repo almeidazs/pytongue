@@ -1,0 +1,8 @@
+main.py(11,8): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+    at "T"
+main.py(12,8): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+    at "P"
+main.py(13,9): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+    at "Ts"
+main.py(14,6): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+    at "T"

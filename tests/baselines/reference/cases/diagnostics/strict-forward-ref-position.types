@@ -1,0 +1,5 @@
+load: (items: unknown[]) => Promise<string>
+
+--- TypeScript errors ---
+diagnostics/strict-forward-ref-position/main.py(3,23): error pytongue1005: Cannot resolve `Ghost`, so it is typed as `unknown` (pytongue strict mode).
+

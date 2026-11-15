@@ -1,0 +1,2 @@
+type Holder
+  token: import("./models.py").Token

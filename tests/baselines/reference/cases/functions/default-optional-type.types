@@ -1,0 +1,1 @@
+search: (query: string, kwargs?: { limit?: number | null | undefined; } | undefined) => Promise<string[]>

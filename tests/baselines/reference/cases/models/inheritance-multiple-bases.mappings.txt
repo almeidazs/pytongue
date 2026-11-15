@@ -1,0 +1,12 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:11 "Timestamps" → py 5:7 "Timestamps" alias
+ts 3:3 "created" → py 6:5 "created" alias
+ts 8:11 "Owned" → py 9:7 "Owned" alias
+ts 9:3 "owner" → py 10:5 "owner" alias
+ts 14:11 "Doc" → py 13:7 "Doc" alias
+ts 14:23 "Timestamps" → py 13:11 "Timestamps" alias
+ts 14:35 "Owned" → py 13:23 "Owned" alias
+ts 15:3 "body" → py 14:5 "body" alias
+ts 18:27 "Timestamps" → py 13:11 "Timestamps" alias
+ts 18:45 "Owned" → py 13:23 "Owned" alias
+ts 19:5 "body" → py 14:5 "body" alias

@@ -1,0 +1,1 @@
+f: (t: import("./nspkg/mod.py").Thing) => Promise<void>

@@ -1,0 +1,1 @@
+f: (a: number | null, b: string | null, c: null, d: number[] | null) => Promise<void>

@@ -1,0 +1,4 @@
+type TreeNode
+  value: number
+  children: import("./main.py").TreeNode[]
+  parent: import("./main.py").TreeNode | null

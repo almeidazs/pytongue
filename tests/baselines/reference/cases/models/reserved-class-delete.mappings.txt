@@ -1,0 +1,6 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:11 "$delete" → py 5:7 "delete" alias
+ts 3:3 "target" → py 6:5 "target" alias
+ts 4:3 "force" → py 7:5 "force" alias
+ts 8:5 "target" → py 6:5 "target" alias
+ts 9:5 "force" → py 7:5 "force" alias

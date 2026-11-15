@@ -1,0 +1,1 @@
+tag: { (kwargs: { color: string; bold?: boolean | undefined; }): Promise<string[]>; (names: string[], kwargs: { color: string; bold?: boolean | undefined; }): Promise<string[]>; }

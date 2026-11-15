@@ -1,0 +1,6 @@
+ok: (x: number) => Promise<number>
+after: (y: string) => Promise<string>
+
+--- TypeScript errors ---
+diagnostics/syntax-stray-token/main.py(6,5): error pytongue1001: Python syntax error
+

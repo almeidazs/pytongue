@@ -1,0 +1,1 @@
+headers: (values?: { [key: string]: string | undefined; } | undefined) => Promise<Record<string, string>>

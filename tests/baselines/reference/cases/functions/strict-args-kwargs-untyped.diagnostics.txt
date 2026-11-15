@@ -1,0 +1,4 @@
+main.py(3,14): error pytongue1002: Parameter `args` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+    at "args"
+main.py(3,22): error pytongue1002: Parameter `kwargs` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+    at "kwargs"

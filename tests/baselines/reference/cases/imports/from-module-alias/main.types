@@ -1,0 +1,1 @@
+first: (tokens: import("./models.py").Token[]) => Promise<import("./models.py").Token>

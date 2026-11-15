@@ -1,0 +1,6 @@
+f: (a: unknown) => Promise<unknown>
+
+--- TypeScript errors ---
+annotations/strict-bytes/main.py(4,8): error pytongue1003: `bytes` has no JSON form, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-bytes/main.py(5,6): error pytongue1003: `bytes` has no JSON form, so it is typed as `unknown` (pytongue strict mode).
+

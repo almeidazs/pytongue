@@ -1,0 +1,1 @@
+area: (r: number) => Promise<number>

@@ -1,0 +1,1 @@
+f: (a: string, b: number, c: number | null, d: boolean[], e: Record<string, unknown>, f: [number, string], g: "x" | "y" | null) => Promise<string[]>

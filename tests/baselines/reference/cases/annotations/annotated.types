@@ -1,0 +1,1 @@
+f: (a: number, b: string, c: number | null, d: number) => Promise<boolean>

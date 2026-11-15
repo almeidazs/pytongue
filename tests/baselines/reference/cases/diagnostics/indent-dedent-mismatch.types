@@ -1,0 +1,5 @@
+f: (x: number) => Promise<void>
+
+--- TypeScript errors ---
+diagnostics/indent-dedent-mismatch/main.py(5,1): error pytongue1001: Python syntax error: unindent does not match any outer indentation level
+

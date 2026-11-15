@@ -1,0 +1,1 @@
+f: (a: Record<string, number>, b: Record<string, number>, c: Record<string, unknown>) => Promise<Record<string, string>>

@@ -1,0 +1,5 @@
+type User
+  name: string
+  age: number
+  score: number
+  active: boolean

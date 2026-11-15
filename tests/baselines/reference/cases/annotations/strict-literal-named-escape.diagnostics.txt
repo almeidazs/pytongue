@@ -1,0 +1,2 @@
+main.py(6,10): error pytongue1003: Unsupported Literal value `"\N{BULLET}"`, so it is typed as `unknown` (pytongue strict mode).
+    at "Literal[\"\\N{BULLET}\"]"

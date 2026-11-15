@@ -1,0 +1,6 @@
+type Tag
+  label: string
+type Post
+  tags: import("./main.py").Tag[]
+  by_name: Record<string, import("./main.py").Tag>
+  pinned: import("./main.py").Tag | null

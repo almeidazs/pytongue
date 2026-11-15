@@ -1,0 +1,2 @@
+main.py(6,7): error pytongue1003: Enum member `B` has a value pytongue cannot read statically, so it is typed as `unknown` (pytongue strict mode).
+    at "Dynamic"

@@ -1,0 +1,2 @@
+type Token
+  from_b: string

@@ -1,0 +1,5 @@
+type Token
+  text: string
+type Span
+  start: number
+  end: number

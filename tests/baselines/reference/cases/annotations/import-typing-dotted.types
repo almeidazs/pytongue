@@ -1,0 +1,1 @@
+f: (a: string | number, b: number[], c: unknown) => Promise<boolean | null>

@@ -1,0 +1,8 @@
+f: (a: unknown, b: unknown, c: unknown, d: unknown) => Promise<void>
+
+--- TypeScript errors ---
+annotations/strict-package-types/main.py(10,8): error pytongue1004: `numpy.ndarray` comes from the module `numpy`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-package-types/main.py(11,8): error pytongue1004: `pandas.Series` comes from the module `pandas`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-package-types/main.py(12,8): error pytongue1004: `numpy.typing.NDArray` comes from the module `numpy`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-package-types/main.py(13,8): error pytongue1004: `sqlalchemy.orm.Session` comes from the module `sqlalchemy`, so it is typed as `unknown` (pytongue strict mode).
+

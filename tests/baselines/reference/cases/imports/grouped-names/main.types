@@ -1,0 +1,1 @@
+locate: (token: import("./models.py").Token) => Promise<import("./models.py").Span>

@@ -1,0 +1,1 @@
+items: () => AsyncIterable<unknown>

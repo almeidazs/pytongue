@@ -1,0 +1,1 @@
+glob: (pattern: string) => Promise<string[]>

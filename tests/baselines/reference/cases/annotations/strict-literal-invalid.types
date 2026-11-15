@@ -1,0 +1,8 @@
+f: (a: unknown, b: unknown, c: unknown, d: unknown) => Promise<void>
+
+--- TypeScript errors ---
+annotations/strict-literal-invalid/main.py(7,8): error pytongue1003: Unsupported Literal value `str`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-literal-invalid/main.py(8,8): error pytongue1003: Unsupported Literal value `f"x"`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-literal-invalid/main.py(9,8): error pytongue1003: Unsupported Literal value `b"x"`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-literal-invalid/main.py(10,8): error pytongue1003: Unsupported Literal value `1 + 2`, so it is typed as `unknown` (pytongue strict mode).
+

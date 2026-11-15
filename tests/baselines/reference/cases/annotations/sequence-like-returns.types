@@ -1,0 +1,6 @@
+a: () => Promise<number[]>
+b: () => Promise<string[]>
+c: () => Promise<number[]>
+d: () => Promise<boolean[]>
+e: () => Promise<number[]>
+f: () => Promise<string[]>

@@ -1,0 +1,1 @@
+f: (a: "\\d+" | "a\\nb", b: "C:\\path") => Promise<void>

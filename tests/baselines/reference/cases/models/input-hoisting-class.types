@@ -1,0 +1,6 @@
+type Input
+  text: string
+  lang: string
+type Job
+  source: import("./main.py").Input
+  priority: number

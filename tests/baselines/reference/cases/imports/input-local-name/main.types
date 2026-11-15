@@ -1,0 +1,2 @@
+type Wrapper
+  token: import("./models.py").Token

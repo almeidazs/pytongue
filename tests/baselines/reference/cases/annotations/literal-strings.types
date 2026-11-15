@@ -1,0 +1,1 @@
+f: (a: "plain" | "single", b: "it's" | "say \"hi\"", c: "back\\slash" | "line\nbreak" | "tab\there", d: "A" | "B" | "é", e: "triple") => Promise<void>

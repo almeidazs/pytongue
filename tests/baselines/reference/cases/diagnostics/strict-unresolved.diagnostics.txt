@@ -1,0 +1,4 @@
+main.py(3,16): error pytongue1005: Cannot resolve `Ghost`, so it is typed as `unknown` (pytongue strict mode).
+    at "Ghost"
+main.py(3,31): error pytongue1005: Cannot resolve `Phantom`, so it is typed as `unknown` (pytongue strict mode).
+    at "Phantom"

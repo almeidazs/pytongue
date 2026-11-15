@@ -1,0 +1,2 @@
+main.py(6,1): error pytongue1001: Python syntax error
+    at "def broken(x: int, y: str -> str:  # E:1 pytongue1001\n    return y"

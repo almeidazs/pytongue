@@ -1,0 +1,1 @@
+wrap: (kwargs: Record<string, number>, kwargs$?: { depth?: number | undefined; } | undefined) => Promise<void>

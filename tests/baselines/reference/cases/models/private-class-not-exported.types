@@ -1,0 +1,2 @@
+type Final
+  draft: import("./main.py").$py$_Draft

@@ -1,0 +1,6 @@
+run: (data: unknown, callback: unknown) => Promise<string>
+
+--- TypeScript errors ---
+diagnostics/strict-untranslatable/main.py(6,15): error pytongue1003: `bytes` has no JSON form, so it is typed as `unknown` (pytongue strict mode).
+diagnostics/strict-untranslatable/main.py(6,32): error pytongue1003: `Callable` cannot cross the process boundary, so it is typed as `unknown` (pytongue strict mode).
+

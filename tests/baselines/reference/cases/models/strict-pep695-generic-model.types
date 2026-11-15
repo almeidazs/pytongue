@@ -1,0 +1,7 @@
+type Box
+  item: unknown
+  count: number
+
+--- TypeScript errors ---
+models/strict-pep695-generic-model/main.py(7,11): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+

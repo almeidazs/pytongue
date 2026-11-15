@@ -1,0 +1,5 @@
+f: (x: number) => Promise<number>
+
+--- TypeScript errors ---
+diagnostics/indent-unexpected-in-block/main.py(4,1): error pytongue1001: Python syntax error: unexpected indent
+

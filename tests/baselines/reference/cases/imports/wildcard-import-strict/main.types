@@ -1,0 +1,5 @@
+first: (token: unknown) => Promise<string>
+
+--- TypeScript errors ---
+imports/wildcard-import-strict/main.py(6,18): error pytongue1005: Cannot resolve `Token`, so it is typed as `unknown` (pytongue strict mode).
+

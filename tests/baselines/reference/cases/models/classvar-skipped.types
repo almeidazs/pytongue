@@ -1,0 +1,2 @@
+type Counter
+  value: number

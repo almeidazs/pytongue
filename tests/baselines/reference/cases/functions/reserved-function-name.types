@@ -1,0 +1,2 @@
+delete: (item_id: number) => Promise<void>
+default: () => Promise<string>

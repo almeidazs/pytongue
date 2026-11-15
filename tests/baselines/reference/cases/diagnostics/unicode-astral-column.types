@@ -1,0 +1,5 @@
+greet: (kwargs: { msg?: string | undefined; name: unknown; }) => Promise<string>
+
+--- TypeScript errors ---
+diagnostics/unicode-astral-column/main.py(3,31): error pytongue1002: Parameter `name` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+

@@ -1,0 +1,6 @@
+main.py(4,9): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+    at "Missing"
+main.py(5,14): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+    at "Missing"
+main.py(6,15): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+    at "Missing"

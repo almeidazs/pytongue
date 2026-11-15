@@ -1,0 +1,4 @@
+main.py(14,12): error pytongue1003: Class `Money` is not a BaseModel, TypedDict or Enum, so it is typed as `unknown` (pytongue strict mode).
+    at "Money"
+main.py(17,12): error pytongue1003: Class `Money` is not a BaseModel, TypedDict or Enum, so it is typed as `unknown` (pytongue strict mode).
+    at "Money"

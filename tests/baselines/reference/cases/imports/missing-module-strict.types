@@ -1,0 +1,6 @@
+first: (token: unknown) => Promise<unknown>
+
+--- TypeScript errors ---
+imports/missing-module-strict/main.py(6,18): error pytongue1005: Cannot find module `./nowhere.py`, so it is typed as `unknown` (pytongue strict mode).
+imports/missing-module-strict/main.py(6,28): error pytongue1005: Cannot find module `./nowhere.py`, so it is typed as `unknown` (pytongue strict mode).
+

@@ -1,0 +1,6 @@
+type Draft
+  title: string
+  subtitle?: string | undefined
+type Patch
+  id: number
+  title?: string | undefined

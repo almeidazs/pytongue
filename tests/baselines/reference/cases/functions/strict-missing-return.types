@@ -1,0 +1,5 @@
+compute: (x: number) => Promise<unknown>
+
+--- TypeScript errors ---
+functions/strict-missing-return/main.py(3,5): error pytongue1002: No return type hint, so it is typed as `unknown` (pytongue strict mode).
+

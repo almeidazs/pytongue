@@ -1,0 +1,1 @@
+render: (template: string, kwargs?: { escape?: boolean | undefined; } | undefined) => Promise<string>

@@ -1,0 +1,1 @@
+f: (a: Record<string, number>, b: Record<string, number[]>, c: Record<string, unknown>, d: Record<string, string>, e: Record<string, Record<string, boolean>>) => Promise<void>

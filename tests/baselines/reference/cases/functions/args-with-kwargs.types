@@ -1,0 +1,1 @@
+mean: { (kwargs?: { weight?: number | undefined; } | undefined): Promise<number>; (values: number[], kwargs?: { weight?: number | undefined; } | undefined): Promise<number>; }

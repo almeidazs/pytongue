@@ -1,0 +1,9 @@
+type Base
+  id: number
+type Named
+  name: string
+  id: number
+type Tagged
+  tags: string[]
+  id: number
+  name: string

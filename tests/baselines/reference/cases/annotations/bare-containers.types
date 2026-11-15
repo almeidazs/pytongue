@@ -1,0 +1,1 @@
+f: (a: unknown[], b: unknown[], c: unknown[], d: unknown[], e: Record<string, unknown>) => Promise<void>

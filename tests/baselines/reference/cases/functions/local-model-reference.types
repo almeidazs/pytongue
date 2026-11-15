@@ -1,0 +1,3 @@
+type User
+  name: string
+save: (user: import("./main.py").User, kwargs?: { notify?: import("./main.py").User | null | undefined; } | undefined) => Promise<import("./main.py").User>

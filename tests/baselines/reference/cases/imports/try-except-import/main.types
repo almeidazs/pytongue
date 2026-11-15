@@ -1,0 +1,1 @@
+first: (tokens: import("./slow.py").Token[]) => Promise<import("./slow.py").Token>

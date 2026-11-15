@@ -1,0 +1,6 @@
+main.py(6,12): error pytongue1003: `AsyncIterator` can only be returned by a generator, so it is typed as `unknown` (pytongue strict mode).
+    at "AsyncIterator[int]"
+main.py(7,10): error pytongue1003: `AsyncIterable` can only be returned by a generator, so it is typed as `unknown` (pytongue strict mode).
+    at "AsyncIterable[str]"
+main.py(8,12): error pytongue1003: `AsyncGenerator` can only be returned by a generator, so it is typed as `unknown` (pytongue strict mode).
+    at "AsyncGenerator[int, None]"

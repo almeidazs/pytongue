@@ -1,0 +1,2 @@
+main.py(3,5): error pytongue1001: Python syntax error
+    at "if x  # E:5 pytongue1001\n        return x"

@@ -1,0 +1,1 @@
+collect: { (): Promise<number>; (items: unknown[]): Promise<number>; }

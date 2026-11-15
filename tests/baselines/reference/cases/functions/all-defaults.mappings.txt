@@ -1,0 +1,4 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 5:18 "paginate" → py 2:5 "paginate" alias
+ts 5:38 "page" → py 2:14 "page" alias
+ts 5:53 "size" → py 2:29 "size" alias

@@ -1,0 +1,4 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:18 "call" → py 2:5 "call" alias
+ts 2:32 "target" → py 2:13 "target" alias
+ts 2:48 "timeout" → py 2:26 "timeout" alias

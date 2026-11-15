@@ -1,0 +1,1 @@
+scale: (value?: number | undefined, kwargs?: { factor?: number | undefined; } | undefined) => Promise<number>

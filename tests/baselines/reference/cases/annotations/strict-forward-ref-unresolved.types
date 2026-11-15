@@ -1,0 +1,7 @@
+f: (a: unknown, b: unknown[], c: unknown[]) => Promise<void>
+
+--- TypeScript errors ---
+annotations/strict-forward-ref-unresolved/main.py(4,9): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-forward-ref-unresolved/main.py(5,14): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-forward-ref-unresolved/main.py(6,15): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+

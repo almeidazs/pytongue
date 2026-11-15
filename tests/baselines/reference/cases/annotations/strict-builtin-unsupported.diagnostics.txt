@@ -1,0 +1,4 @@
+main.py(4,8): error pytongue1003: `builtins.complex` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "complex"
+main.py(5,8): error pytongue1003: `builtins.type` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "type"

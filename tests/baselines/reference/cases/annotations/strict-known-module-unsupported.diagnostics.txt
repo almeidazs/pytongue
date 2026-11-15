@@ -1,0 +1,10 @@
+main.py(10,8): error pytongue1003: `re.Pattern` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "re.Pattern"
+main.py(11,8): error pytongue1003: `enum.Enum` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "enum.Enum"
+main.py(12,8): error pytongue1003: `re.Match` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "re.Match[str]"
+main.py(13,8): error pytongue1003: `collections.Counter` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "Counter[str]"
+main.py(14,6): error pytongue1003: `typing.NoReturn` is not supported, so it is typed as `unknown` (pytongue strict mode).
+    at "NoReturn"

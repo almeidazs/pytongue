@@ -1,0 +1,1 @@
+f: (m: "read" | "write") => Promise<"read" | "write">

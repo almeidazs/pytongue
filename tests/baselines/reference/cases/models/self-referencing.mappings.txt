@@ -1,0 +1,12 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 5:11 "TreeNode" → py 5:7 "TreeNode" alias
+ts 6:3 "value" → py 6:5 "value" alias
+ts 7:3 "children" → py 7:5 "children" alias
+ts 7:13 "TreeNode" → py 7:21 "TreeNode" alias
+ts 8:3 "parent" → py 8:5 "parent" alias
+ts 8:11 "TreeNode" → py 8:14 "TreeNode" alias
+ts 12:5 "value" → py 6:5 "value" alias
+ts 13:5 "children" → py 7:5 "children" alias
+ts 13:16 "TreeNode" → py 7:21 "TreeNode" alias
+ts 14:5 "parent" → py 8:5 "parent" alias
+ts 14:14 "TreeNode" → py 8:14 "TreeNode" alias

@@ -1,0 +1,6 @@
+load: (path: unknown) => Promise<unknown[]>
+
+--- TypeScript errors ---
+diagnostics/strict-unresolved/main.py(3,16): error pytongue1005: Cannot resolve `Ghost`, so it is typed as `unknown` (pytongue strict mode).
+diagnostics/strict-unresolved/main.py(3,31): error pytongue1005: Cannot resolve `Phantom`, so it is typed as `unknown` (pytongue strict mode).
+

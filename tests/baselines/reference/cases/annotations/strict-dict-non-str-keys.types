@@ -1,0 +1,9 @@
+f: (a: unknown, b: unknown, c: unknown, d: unknown, e: unknown) => Promise<void>
+
+--- TypeScript errors ---
+annotations/strict-dict-non-str-keys/main.py(7,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-dict-non-str-keys/main.py(8,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-dict-non-str-keys/main.py(9,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-dict-non-str-keys/main.py(10,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-dict-non-str-keys/main.py(11,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+

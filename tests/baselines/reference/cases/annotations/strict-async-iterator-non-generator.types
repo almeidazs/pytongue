@@ -1,0 +1,9 @@
+a: () => Promise<unknown>
+b: (x: unknown) => Promise<void>
+c: () => Promise<unknown>
+
+--- TypeScript errors ---
+annotations/strict-async-iterator-non-generator/main.py(6,12): error pytongue1003: `AsyncIterator` can only be returned by a generator, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-async-iterator-non-generator/main.py(7,10): error pytongue1003: `AsyncIterable` can only be returned by a generator, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-async-iterator-non-generator/main.py(8,12): error pytongue1003: `AsyncGenerator` can only be returned by a generator, so it is typed as `unknown` (pytongue strict mode).
+

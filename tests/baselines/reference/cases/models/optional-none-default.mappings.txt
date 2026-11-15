@@ -1,0 +1,6 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 5:11 "Query" → py 7:7 "Query" alias
+ts 6:3 "term" → py 8:5 "term" alias
+ts 7:3 "limit" → py 9:5 "limit" alias
+ts 11:5 "term" → py 8:5 "term" alias
+ts 12:5 "limit" → py 9:5 "limit" alias

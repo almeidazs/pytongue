@@ -1,0 +1,4 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:18 "configure" → py 2:5 "configure" alias
+ts 2:38 "name" → py 2:18 "name" alias
+ts 2:52 "debug" → py 2:29 "debug" alias

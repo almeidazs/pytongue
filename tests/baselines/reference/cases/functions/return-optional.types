@@ -1,0 +1,1 @@
+find: (key: string) => Promise<string | null>

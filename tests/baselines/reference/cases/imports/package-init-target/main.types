@@ -1,0 +1,1 @@
+first: (tokens: import("./pkg/__init__.py").Token[]) => Promise<import("./pkg/__init__.py").Token>

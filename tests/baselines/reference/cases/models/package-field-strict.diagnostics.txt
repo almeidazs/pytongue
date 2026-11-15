@@ -1,0 +1,2 @@
+main.py(8,11): error pytongue1004: `numpy.ndarray` comes from the module `numpy`, so it is typed as `unknown` (pytongue strict mode).
+    at "np.ndarray"

@@ -1,0 +1,1 @@
+f: (a: [number, string], b: [number, string, boolean], c: [number]) => Promise<[string, number]>

@@ -1,0 +1,8 @@
+f: { (a: unknown, b?: number | undefined, kwargs?: { [key: string]: unknown; } | undefined): Promise<unknown>; (a: unknown, b: number, args: unknown[], kwargs?: { [key: string]: unknown; } | undefined): Promise<unknown>; }
+
+--- TypeScript errors ---
+annotations/strict-missing-hints/main.py(3,5): error pytongue1002: No return type hint, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-missing-hints/main.py(3,7): error pytongue1002: Parameter `a` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-missing-hints/main.py(3,23): error pytongue1002: Parameter `args` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-missing-hints/main.py(3,31): error pytongue1002: Parameter `kwargs` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+

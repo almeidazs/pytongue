@@ -1,0 +1,3 @@
+type Query
+  term: string
+  limit: number | null

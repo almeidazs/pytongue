@@ -1,0 +1,5 @@
+type Base
+  id: number
+type Extra
+  label?: string | undefined
+  id: number

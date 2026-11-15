@@ -1,0 +1,8 @@
+f: (x: unknown, p: unknown, ts: unknown) => Promise<unknown>
+
+--- TypeScript errors ---
+annotations/strict-typevar/main.py(11,8): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-typevar/main.py(12,8): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-typevar/main.py(13,9): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-typevar/main.py(14,6): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+

@@ -1,0 +1,3 @@
+type Node
+  children: import("./main.py").Node[]
+f: (a: import("./main.py").Node.Input, b: import("./main.py").Node.Input[], c: import("./main.py").Node.Input | null) => Promise<import("./main.py").Node[]>

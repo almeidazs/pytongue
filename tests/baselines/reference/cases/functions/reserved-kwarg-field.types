@@ -1,0 +1,1 @@
+pick: (items: string[], kwargs?: { default?: string | undefined; } | undefined) => Promise<string>

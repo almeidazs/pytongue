@@ -1,0 +1,41 @@
+# Pydantic string types become string.
+from pydantic import (
+    UUID1,
+    UUID4,
+    AnyHttpUrl,
+    AnyUrl,
+    AwareDatetime,
+    EmailStr,
+    FileUrl,
+    FutureDate,
+    FutureDatetime,
+    HttpUrl,
+    NaiveDatetime,
+    NameEmail,
+    PastDate,
+    PastDatetime,
+    SecretStr,
+    StrictStr,
+    WebsocketUrl,
+)
+
+
+def f(
+    a: EmailStr,
+    b: NameEmail,
+    c: AnyUrl,
+    d: AnyHttpUrl,
+    e: HttpUrl,
+    f: FileUrl,
+    g: WebsocketUrl,
+    h: StrictStr,
+    i: SecretStr,
+    j: UUID4,
+    k: UUID1,
+    l: FutureDate,
+    m: PastDate,
+    n: AwareDatetime,
+    o: NaiveDatetime,
+    p: FutureDatetime,
+    q: PastDatetime,
+) -> None: ...

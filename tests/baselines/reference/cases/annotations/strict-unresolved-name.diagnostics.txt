@@ -1,0 +1,6 @@
+main.py(4,8): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+    at "Missing"
+main.py(5,8): error pytongue1005: Cannot resolve `missing.attr`, so it is typed as `unknown` (pytongue strict mode).
+    at "missing.attr"
+main.py(6,8): error pytongue1005: Cannot resolve `Missing`, so it is typed as `unknown` (pytongue strict mode).
+    at "Missing[int]"

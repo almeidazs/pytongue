@@ -1,0 +1,5 @@
+ok: (x: number) => Promise<number>
+
+--- TypeScript errors ---
+diagnostics/indent-missing-block/main.py(2,25): error pytongue1001: Python syntax error: expected an indented block
+

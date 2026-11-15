@@ -1,0 +1,8 @@
+f: (a: unknown, b: unknown, c: unknown, d: unknown) => Promise<void>
+
+--- TypeScript errors ---
+annotations/strict-callable-and-type/main.py(7,8): error pytongue1003: `Callable` cannot cross the process boundary, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-callable-and-type/main.py(8,8): error pytongue1003: `type` cannot cross the process boundary, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-callable-and-type/main.py(9,8): error pytongue1003: `Type` cannot cross the process boundary, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-callable-and-type/main.py(10,8): error pytongue1003: `typing.Callable` is not supported, so it is typed as `unknown` (pytongue strict mode).
+

@@ -1,0 +1,3 @@
+type Row
+  id: number
+f: (a: number, b: import("./main.py").Row, c: string) => Promise<number>

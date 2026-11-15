@@ -1,0 +1,10 @@
+main.py(7,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+    at "dict[int, str]"
+main.py(8,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+    at "dict[tuple[int, int], str]"
+main.py(9,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+    at "dict[Literal[1, 2], str]"
+main.py(10,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+    at "dict[str | int, str]"
+main.py(11,8): error pytongue1003: Dict keys must be `str` to cross into JSON, so it is typed as `unknown` (pytongue strict mode).
+    at "dict[Literal[\"a\", 1], str]"

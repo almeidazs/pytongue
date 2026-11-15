@@ -1,0 +1,8 @@
+type Opt
+  z?: number | undefined
+  x: number
+  y: number
+type Nr
+  w?: number | undefined
+  x: number
+  y: number

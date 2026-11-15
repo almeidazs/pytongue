@@ -1,0 +1,5 @@
+ok: (x: number) => Promise<number>
+
+--- TypeScript errors ---
+diagnostics/syntax-missing-paren-signature/main.py(6,1): error pytongue1001: Python syntax error
+

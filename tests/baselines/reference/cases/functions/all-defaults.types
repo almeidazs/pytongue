@@ -1,0 +1,1 @@
+paginate: (kwargs?: { page?: number | undefined; size?: number | undefined; } | undefined) => Promise<number[]>

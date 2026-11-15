@@ -1,0 +1,7 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 5:11 "Public" → py 7:7 "Public" alias
+ts 6:3 "value" → py 8:5 "value" alias
+ts 14:11 "Internal" → py 11:7 "Internal" alias
+ts 15:3 "value" → py 12:5 "value" alias
+ts 20:18 "make" → py 15:5 "make" alias
+ts 20:34 "Public" → py 15:15 "Public" alias

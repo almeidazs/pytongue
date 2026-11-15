@@ -1,0 +1,4 @@
+type Point
+  x: number
+  y: number
+mirror: (p: import("./main.py").Point) => Promise<import("./main.py").Point>

@@ -1,0 +1,14 @@
+type Perm
+  toString: (radix?: number | undefined) => string
+  toFixed: (fractionDigits?: number | undefined) => string
+  toExponential: (fractionDigits?: number | undefined) => string
+  toPrecision: (precision?: number | undefined) => string
+  valueOf: () => number
+  toLocaleString: { (locales?: string | string[] | undefined, options?: Intl.NumberFormatOptions | undefined): string; (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions | undefined): string; }
+type Mode
+  toString: (radix?: number | undefined) => string
+  toFixed: (fractionDigits?: number | undefined) => string
+  toExponential: (fractionDigits?: number | undefined) => string
+  toPrecision: (precision?: number | undefined) => string
+  valueOf: () => number
+  toLocaleString: { (locales?: string | string[] | undefined, options?: Intl.NumberFormatOptions | undefined): string; (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions | undefined): string; }

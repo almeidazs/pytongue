@@ -1,0 +1,13 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 6:18 "configure" → py 3:5 "configure" alias
+ts 6:28 "host" → py 3:15 "host" alias
+ts 6:42 "port" → py 3:26 "port" alias
+ts 6:56 "user" → py 3:37 "user" alias
+ts 6:70 "password" → py 3:48 "password" alias
+ts 6:88 "database" → py 3:63 "database" alias
+ts 6:116 "timeout" → py 3:78 "timeout" alias
+ts 6:134 "retries" → py 3:101 "retries" alias
+ts 6:152 "verbose" → py 3:119 "verbose" alias
+ts 6:171 "ssl" → py 3:145 "ssl" alias
+ts 6:186 "pool_size" → py 3:163 "pool_size" alias
+ts 6:206 "application_name" → py 3:184 "application_name" alias

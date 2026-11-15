@@ -1,0 +1,7 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:18 "models" → py 3:16 "models" alias
+ts 3:11 "Holder" → py 6:7 "Holder" alias
+ts 4:3 "token" → py 7:5 "token" alias
+ts 4:10 "models.$py$Token" → py 7:12 "models.Token" alias
+ts 8:5 "token" → py 7:5 "token" alias
+ts 8:12 "models.$py$Token" → py 7:12 "models.Token" alias

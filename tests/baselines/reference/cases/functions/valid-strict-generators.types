@@ -1,0 +1,2 @@
+sync_items: () => AsyncIterable<string>
+async_items: () => AsyncIterable<number>

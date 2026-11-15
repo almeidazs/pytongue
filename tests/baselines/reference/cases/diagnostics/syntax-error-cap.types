@@ -1,0 +1,23 @@
+
+--- TypeScript errors ---
+diagnostics/syntax-error-cap/main.py(2,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(3,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(4,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(5,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(6,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(7,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(8,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(9,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(10,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(11,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(12,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(13,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(14,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(15,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(16,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(17,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(18,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(19,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(20,5): error pytongue1001: Python syntax error
+diagnostics/syntax-error-cap/main.py(21,5): error pytongue1001: Python syntax error
+

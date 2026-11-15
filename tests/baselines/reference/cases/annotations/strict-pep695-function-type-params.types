@@ -1,0 +1,6 @@
+g: (x: unknown) => Promise<unknown>
+
+--- TypeScript errors ---
+annotations/strict-pep695-function-type-params/main.py(6,8): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+annotations/strict-pep695-function-type-params/main.py(7,6): error pytongue1003: Type variables (generics) are not supported yet, so it is typed as `unknown` (pytongue strict mode).
+

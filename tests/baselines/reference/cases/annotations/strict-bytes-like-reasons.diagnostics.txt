@@ -1,0 +1,6 @@
+main.py(6,8): error pytongue1003: `bytes` has no JSON form, so it is typed as `unknown` (pytongue strict mode).
+    at "bytes"
+main.py(7,8): error pytongue1003: `bytearray` has no JSON form, so it is typed as `unknown` (pytongue strict mode).
+    at "bytearray"
+main.py(8,8): error pytongue1003: `memoryview` has no JSON form, so it is typed as `unknown` (pytongue strict mode).
+    at "memoryview"

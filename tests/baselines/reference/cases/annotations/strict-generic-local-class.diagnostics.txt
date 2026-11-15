@@ -1,0 +1,4 @@
+main.py(17,8): error pytongue1003: Generic `Box[...]` is not supported yet, so it is typed as `unknown` (pytongue strict mode).
+    at "Box[int]"
+main.py(18,8): error pytongue1003: Generic `Pair[...]` is not supported yet, so it is typed as `unknown` (pytongue strict mode).
+    at "Pair[int]"

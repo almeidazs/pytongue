@@ -1,0 +1,5 @@
+type Invoice
+  invoiceNumber: string
+  lines: number[]
+  paid: boolean
+  total: number

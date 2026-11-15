@@ -1,0 +1,2 @@
+double: (x: number) => Promise<number>
+triple: (x: number) => Promise<number>

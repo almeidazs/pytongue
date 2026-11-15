@@ -1,0 +1,2 @@
+type Token
+  text: string

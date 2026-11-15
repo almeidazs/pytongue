@@ -1,0 +1,5 @@
+items: () => AsyncIterable<unknown>
+
+--- TypeScript errors ---
+functions/strict-generator-wrong-annotation/main.py(3,16): error pytongue1003: Generator annotated as `list[int]` (expected Iterator[T], Generator[T, ...] or AsyncIterator[T]), so it is typed as `unknown` (pytongue strict mode).
+

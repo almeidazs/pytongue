@@ -1,0 +1,1 @@
+store: (key: string, value: string[], kwargs?: { ttl?: number | null | undefined; } | undefined) => Promise<void>

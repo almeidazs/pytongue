@@ -1,0 +1,4 @@
+type Odd
+  toString: (() => string) | ((radix?: number | undefined) => string)
+  valueOf: (() => boolean) | (() => number)
+  toLocaleString: (() => string) | { (locales?: string | string[] | undefined, options?: Intl.NumberFormatOptions | undefined): string; (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions | undefined): string; }

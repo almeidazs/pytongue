@@ -1,0 +1,5 @@
+type Address
+  city: string
+type Person
+  name: string
+  address: import("./main.py").Address

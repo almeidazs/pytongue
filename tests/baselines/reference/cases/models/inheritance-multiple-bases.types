@@ -1,0 +1,8 @@
+type Timestamps
+  created: string
+type Owned
+  owner: string
+type Doc
+  body: string
+  created: string
+  owner: string

@@ -1,0 +1,5 @@
+use: (value: unknown) => Promise<string>
+
+--- TypeScript errors ---
+imports/missing-package-name-strict/main.py(6,16): error pytongue1005: Cannot find module `./ghost.py`, so it is typed as `unknown` (pytongue strict mode).
+

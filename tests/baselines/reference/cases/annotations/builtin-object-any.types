@@ -1,0 +1,1 @@
+f: (o: unknown, a: unknown) => Promise<unknown>

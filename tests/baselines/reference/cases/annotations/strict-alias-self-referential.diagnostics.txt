@@ -1,0 +1,2 @@
+main.py(3,20): error pytongue1003: Type alias `Nested` is recursive, so it is typed as `unknown` (pytongue strict mode).
+    at "Nested"

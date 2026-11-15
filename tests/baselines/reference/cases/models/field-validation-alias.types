@@ -1,0 +1,2 @@
+type Account
+  user_id: number

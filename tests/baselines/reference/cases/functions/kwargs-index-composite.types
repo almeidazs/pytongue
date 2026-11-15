@@ -1,0 +1,1 @@
+build: (attrs?: { [key: string]: string | string[] | undefined; tags?: string[] | undefined; } | undefined) => Promise<void>

@@ -1,0 +1,1 @@
+f: (a: number[], b: Record<string, number>, c: string[], d: number[], e: boolean[], f: number[], g: Record<string, string>) => Promise<void>

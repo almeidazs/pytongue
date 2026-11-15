@@ -1,0 +1,16 @@
+ts 1:1 "/* pytongue */\n" → py 1:1 "" atom [definition]
+ts 2:11 "Tag" → py 5:7 "Tag" alias
+ts 3:3 "label" → py 6:5 "label" alias
+ts 8:11 "Post" → py 9:7 "Post" alias
+ts 9:3 "tags" → py 10:5 "tags" alias
+ts 9:9 "Tag" → py 10:16 "Tag" alias
+ts 10:3 "by_name" → py 11:5 "by_name" alias
+ts 10:27 "Tag" → py 11:24 "Tag" alias
+ts 11:3 "pinned" → py 12:5 "pinned" alias
+ts 11:11 "Tag" → py 12:13 "Tag" alias
+ts 15:5 "tags" → py 10:5 "tags" alias
+ts 15:11 "Tag" → py 10:16 "Tag" alias
+ts 16:5 "by_name" → py 11:5 "by_name" alias
+ts 16:29 "Tag" → py 11:24 "Tag" alias
+ts 17:5 "pinned" → py 12:5 "pinned" alias
+ts 17:14 "Tag" → py 12:13 "Tag" alias

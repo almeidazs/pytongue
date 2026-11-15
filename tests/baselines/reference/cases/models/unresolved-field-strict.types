@@ -1,0 +1,6 @@
+type Report
+  chart: unknown
+
+--- TypeScript errors ---
+models/unresolved-field-strict/main.py(7,12): error pytongue1005: Cannot resolve `Figure`, so it is typed as `unknown` (pytongue strict mode).
+

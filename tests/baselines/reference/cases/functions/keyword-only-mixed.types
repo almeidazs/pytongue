@@ -1,0 +1,1 @@
+configure: (kwargs: { name: string; debug?: boolean | undefined; }) => Promise<void>

@@ -1,0 +1,6 @@
+pair: (a: unknown, b: number, kwargs?: { c?: unknown; } | undefined) => Promise<number>
+
+--- TypeScript errors ---
+functions/strict-missing-param/main.py(3,10): error pytongue1002: Parameter `a` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+functions/strict-missing-param/main.py(3,24): error pytongue1002: Parameter `c` has no type hint, so it is typed as `unknown` (pytongue strict mode).
+
