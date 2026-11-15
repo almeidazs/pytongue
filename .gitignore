@@ -47,3 +47,9 @@ __pycache__/
 .zed/
 pyrightconfig.json
 
+
+# test output (cases written to disk, baselines from the last run)
+tests/.build/
+tests/baselines/local/
+
+.coverage

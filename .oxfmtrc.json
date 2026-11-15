@@ -11,6 +11,10 @@
 		"grammar",
 		"tests/fixtures",
 		"bun.lock",
-		"README.md"
+		"README.md",
+		"tests/baselines",
+		"tests/cases",
+		"tests/.build",
+		"benchmark/RESULTS.md"
 	]
 }

@@ -1,0 +1,60 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+concurrency:
+    group: ci-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    static:
+        name: Lint and types
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+            - run: bun install --frozen-lockfile
+            - run: bun run lint
+            - run: bun run typecheck
+
+    test:
+        name: Tests (${{ matrix.os }}, Node ${{ matrix.node }})
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, macos-latest, windows-latest]
+                node: [22, 24]
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v2
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node }}
+            - uses: astral-sh/setup-uv@v5
+            - run: bun install --frozen-lockfile
+            - name: Tests with coverage (90% floor per file)
+              shell: bash
+              run: |
+                  export PYTONGUE_TEST_NODE="$(which node)"
+                  bun test --coverage
+
+    python:
+        name: Worker (Python ${{ matrix.python }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                python: ['3.10', '3.11', '3.12', '3.13']
+        steps:
+            - uses: actions/checkout@v4
+            - uses: astral-sh/setup-uv@v5
+            - name: pytest with coverage (90% floor)
+              working-directory: python
+              run: >
+                  uv run --no-project --python ${{ matrix.python }}
+                  --with pytest --with pytest-cov --with hypothesis --with "pydantic>=2"
+                  pytest --cov --cov-fail-under=90

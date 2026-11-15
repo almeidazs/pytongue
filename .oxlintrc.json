@@ -81,7 +81,10 @@
 		"**/dist",
 		"**/node_modules",
 		"grammar",
-		"tests/fixtures"
+		"tests/fixtures",
+		"tests/baselines",
+		"tests/cases",
+		"tests/.build"
 	],
 	"overrides": [
 		{

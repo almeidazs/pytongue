@@ -1,0 +1,12 @@
+[test]
+# `bun test --coverage` fails when a file drops below 90% of lines or functions.
+# (Bun applies the threshold per file, and only reports it with the text reporter.)
+coverageThreshold = { lines = 0.9, functions = 0.9 }
+coverageReporter = ["text", "lcov"]
+coverageSkipTestFiles = true
+coveragePathIgnorePatterns = [
+	"tests/",
+	"dist/",
+	"node_modules/",
+	"src/entries/",
+]

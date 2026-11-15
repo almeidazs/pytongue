@@ -32,5 +32,10 @@
 	},
 	// examples/ and tests/fixtures/ import .py files: they are type-checked through the mapper by the e2e tests.
 	"include": ["src", "tests", "tsdown.config.ts"],
-	"exclude": ["tests/fixtures"]
+	"exclude": [
+		"tests/fixtures",
+		"tests/baselines",
+		"tests/cases",
+		"tests/.build"
+	]
 }
