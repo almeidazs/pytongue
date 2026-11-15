@@ -29,7 +29,9 @@ describe('modules', () => {
 		expect(squash(text)).toContain(
 			'declare function f(t: T.Input, u: util.$py$Thing.Input): Promise<void>;',
 		);
-		expect(text).toContain('export type { T as $py$T, util as $py$util };');
+		expect(text).toContain(
+			'export type { T as $py$T, util as $py$util, f as $py$f };',
+		);
 	});
 
 	test('__all__ decides exports; a dynamic __all__ falls back to public names with a note', () => {
