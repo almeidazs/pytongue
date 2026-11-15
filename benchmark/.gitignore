@@ -1,0 +1,7 @@
+# Dependencies, the Python venv and the pytongue symlink created by `bun run bench`
+node_modules
+.venv
+__pycache__
+
+# Output of `--quick` and `--only` runs (a full run writes the committed RESULTS.md)
+RESULTS.partial.md

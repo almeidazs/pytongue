@@ -1,0 +1,19 @@
+{
+	"name": "pytongue-benchmark",
+	"private": true,
+	"description": "Compares calling Python from Node 24 and Bun across tools. Run from the repo root with `bun run bench`.",
+	"type": "module",
+	"dependencies": {
+		"pymport": "1.5.1",
+		"pyodide": "314.0.8",
+		"python-shell": "5.0.0",
+		"pythonia": "1.2.6"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/node": "^26.6.6"
+	},
+	"trustedDependencies": [
+		"pymport"
+	]
+}

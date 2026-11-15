@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"module": "nodenext",
+		"strict": true,
+		"noEmit": true,
+		"erasableSyntaxOnly": true,
+		"allowImportingTsExtensions": true,
+		"skipLibCheck": true,
+		"types": ["node", "bun"]
+	},
+	"contentMappers": [{ "package": "pytongue", "extensions": [".py"] }],
+	"include": ["*.ts", "tools"]
+}
