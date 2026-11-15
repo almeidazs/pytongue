@@ -36,6 +36,8 @@ jobs:
                   node-version: ${{ matrix.node }}
             - uses: astral-sh/setup-uv@v5
             - run: bun install --frozen-lockfile
+            # Creates dist/ and grammar/ (gitignored), which the tests load.
+            - run: bun run build
             - name: Tests with coverage (90% floor per file)
               shell: bash
               run: |
